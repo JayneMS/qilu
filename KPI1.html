@@ -1,0 +1,451 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>KPI统计_表1</title>
+
+    <!-- Common plugins -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/pace.css" rel="stylesheet">
+    <link href="css/jasny-bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/nanoscroller.css">
+    <link rel="stylesheet" href="css/metismenu.min.css">
+    <!-- dataTables -->
+    <link href="css/jquery.datatables.min.css" rel="stylesheet" type="text/css">
+    <link href="css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css">
+    <!-- Treeview css -->
+    <link href="css/style_1.css" rel="stylesheet" type="text/css" />
+    <!--sweetalert css-->
+    <link href="css/sweet-alert.css" rel="stylesheet">
+    <!--template css-->
+    <link href="css/jquery-ui.css" rel="stylesheet">
+
+    <link href="css/blue.css" rel="stylesheet">
+    <link href="css/switch.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/jayne.css" rel="stylesheet">
+    <link href="css/vlstyle.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/timeline.css">
+	<!-- datapicker css-->
+	<link href="css/daterangepicker.css" rel="stylesheet">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+          <script src="js/html5shiv.min.js"></script>
+          <script src="js/respond.min.js"></script>
+        <![endif]-->
+</head>
+
+<body>
+
+    <!--main content start-->
+    <section class="main-content">
+
+        <!--page header start-->
+        <div class="page-header">
+            <div class="row">
+                <div class="col-sm-6 flex-align-center">
+                    <h4 class="inline">KPI统计_表1</h4>
+                </div>
+                <div class="col-sm-6 text-right">
+                    <ol class="breadcrumb">
+                        <li>
+                            <a href="javascript: void(0);">
+                                <i class="fa fa-home"></i>
+                            </a>
+                        </li>
+                        <li>查询</li>
+                        <li>KPI统计_表1</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+        <!--page header end-->
+
+        <!--page filter start-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default collapsed">
+                    <div class="panel-heading">
+                        <p class="inline">查询条件</p>
+                        <a class="vl-a" id="resetBtn">重置查询条件</a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <fieldset class="jquery-Ui-fieldset">
+                                    <label>队列</label>
+                                    <select name="branch" id="branch">
+                                        <option selected="selected">全部队列</option>
+                                        <option>移动队列</option>
+                                        <option>移动队列2</option>
+                                        <option>移动队列3</option>
+                                        <option>联通队列1</option>
+                                        <option>联通队列2</option>
+                                        <option>联通队列3</option>
+                                    </select>
+                                </fieldset>
+                            </div>
+	                        <div class="row">	
+                            	<div class="inline width-33">
+                                    <label>请选择起止时间</label>
+                                    <input name="daterange" id="daterange" type="text" >
+                            	</div>	
+	                        </div>
+                            <div class="col-sm-3">
+                                <fieldset class="jquery-Ui-fieldset">
+		                            <label>排序方式</label>
+                                    <select name="sort" id="sort">
+		                                <option selected="selected">呼入量</option>
+		                                <option>呼出量</option>
+		                                <option>未接电话</option>
+		                                <option>在线总时长</option>
+		                            </select>
+                                </fieldset>
+                            </div>
+                            <div class="col-sm-3">
+                                <fieldset class="jquery-Ui-fieldset">
+                                    <label>坐席工号</label>
+                                    <input class="input-150p black" name="uid" id="uid" />
+                                </fieldset>
+                            </div>
+                        </div>
+                        <a href="javascript: void(0);" class="btn btn-primary inline float-right" onclick="search_tab()">开始查询</a>
+                        <a href="javascript: void(0);" id="change-btn" class="btn btn-primary inline float-right" style="margin-right: 15px;" onclick="change_tab()">柱状图</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--page filter end-->
+
+        <!--start page content-->
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default collapsed">
+                    <div class="panel-body table-div" style="display: none;">
+                        <table id="datatable" class="table table-striped dt-responsive nowrap">
+                            <thead>
+                                <tr>
+                                    <th>工号</th>
+                                    <th>姓名</th>
+                                    <th>呼入量</th>
+                                    <th>呼出量</th>
+                                    <th>未接电话</th>
+                                    <th>在线总时长</th>
+                                    <th>通话总时长</th>
+                                    <th>后处理时长</th>
+                                    <th>未评价</th>
+                                    <th>非常满意</th>
+                                    <th>一般满意</th>
+                                    <th>不满意</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>w55sw9851</td>
+                                    <td>王林</td>
+                                    <td>20</td>
+                                    <td>13</td>
+                                    <td>3</td>
+                                    <td>1738</td>
+                                    <td>856</td>
+                                    <td>50</td>
+                                    <td>13</td>
+                                    <td>12</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>w55sw9851</td>
+                                    <td>王林</td>
+                                    <td>20</td>
+                                    <td>13</td>
+                                    <td>3</td>
+                                    <td>1738</td>
+                                    <td>856</td>
+                                    <td>50</td>
+                                    <td>13</td>
+                                    <td>12</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>w55sw9851</td>
+                                    <td>王林</td>
+                                    <td>20</td>
+                                    <td>13</td>
+                                    <td>3</td>
+                                    <td>1738</td>
+                                    <td>856</td>
+                                    <td>50</td>
+                                    <td>13</td>
+                                    <td>12</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr>
+                                    <td>w55sw9851</td>
+                                    <td>王林</td>
+                                    <td>20</td>
+                                    <td>13</td>
+                                    <td>3</td>
+                                    <td>1738</td>
+                                    <td>856</td>
+                                    <td>50</td>
+                                    <td>13</td>
+                                    <td>12</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-body bar-div">
+				       <div id="container" style="height: 500px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--end row-->
+
+        <!--end page content-->
+
+
+    </section>
+    <!--end main content-->
+
+    <!--Common plugins-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/pace.min.js"></script>
+    <script src="js/jasny-bootstrap.min.js"></script>
+    <script src="js/jquery.slimscroll.min.js"></script>
+    <script src="js/jquery.nanoscroller.min.js"></script>
+    <script src="js/metismenu.min.js"></script>
+    <script src="js/float-custom.js"></script>
+
+    <!--page script-->
+    <script src="js/jquery.datatables.min.js"></script>
+    <script src="js/datatables.responsive.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script src="js/jquery.ui.custom.js"></script>
+    <script src="js/moment.min.js"></script>
+    <script src="js/moment-with-locales.js"></script>
+    <script src="js/daterangepicker.js"></script>
+    <script src="js/jayne.js"></script>
+    <script src="js/drawer.js"></script>
+    <script src="js/bootstrap-datetimepicker.min.js"></script>
+    
+    <!-- iCheck for radio and checkboxes -->
+    <script src="js/icheck.min.js"></script>
+    <script src="js/tableConfig.js"></script>
+	<script type="text/javascript" src="js/echarts.js"></script>
+	<script type="text/javascript" src="js/echarts.common.min.js"></script>
+    <script type="text/javascript">
+		var dom = document.getElementById("container");
+		var myChart = echarts.init(dom);
+		var app = {};
+		option = null;
+		var dataAxis = ['王冰', '李毅', '张损', '王冰', '李毅', '张一损', '王冰', '李毅', '张损', '王冰', '李毅', '张损', '王冰', '李毅', '张损', '王冰', '李毅', '张损', '王冰', '李毅'];
+		var data = [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200];
+		var yMax = 200;
+		var dataShadow = [];
+		
+		for (var i = 0; i < data.length; i++) {
+		    dataShadow.push(yMax);
+		}
+		
+		option = {
+		    title: {
+		        text: '呼入量',
+		        subtext: ''
+		    },
+		    xAxis: {
+		        type : 'category',
+		        splitLine: {show:false},
+		        data :  dataAxis,
+		        z: 10
+		    },
+		    yAxis: {
+		        axisLine: {
+		            show: false
+		        },
+		        axisTick: {
+		            show: false
+		        },
+		        axisLabel: {
+		            textStyle: {
+		                color: '#999'
+		            }
+		        }
+		    },
+		    
+		    series: [
+		        { // For shadow
+		            type: 'bar',
+		            itemStyle: {
+		                normal: {color: 'rgba(0,0,0,0.05)'}
+		            },
+		            barGap:'-100%',
+		            barCategoryGap:'40%',
+		            data: dataShadow,
+		            animation: false
+		        },
+		        {
+		            label: {
+		                normal: {
+		                    show: true,
+		                    position: 'top',
+		                }
+		            },
+		            type: 'bar',
+		            itemStyle: {
+		                normal: {
+		                    color: new echarts.graphic.LinearGradient(
+		                        0, 0, 0, 1,
+		                        [
+		                            {offset: 0, color: '#83bff6'},
+		                            {offset: 0.5, color: '#188df0'},
+		                            {offset: 1, color: '#188df0'}
+		                        ]
+		                    )
+		                },
+		                emphasis: {
+		                    color: new echarts.graphic.LinearGradient(
+		                        0, 0, 0, 1,
+		                        [
+		                            {offset: 0, color: '#2378f7'},
+		                            {offset: 0.7, color: '#2378f7'},
+		                            {offset: 1, color: '#83bff6'}
+		                        ]
+		                    )
+		                }
+		            },
+		            data: data
+		        }
+		    ]
+		};
+		
+		var zoomSize = 6;
+		myChart.on('click', function (params) {
+		    console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+		    myChart.dispatchAction({
+		        type: 'dataZoom',
+		        startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
+		        endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+		    });
+		});;
+		if (option && typeof option === "object") {
+		    myChart.setOption(option, true);
+		}
+       </script>
+  
+    <script>
+        //筛选查询条件
+        function search_tab() {
+            var branch = $('#branch').val().trim();
+		    var daterange = $('#daterange').val().trim();
+            var sort = $('#sort').val().trim();
+            var uid = $('#uid').val().trim();
+            alert(branch);
+            alert(uid);
+            //此处添加查询方法
+        }
+
+        //切换视图
+        function change_tab() {
+        	var intext = $('#change-btn').text().trim();
+        	
+        	if(intext=='柱状图'){
+	        	$('.bar-div').css('display','none');
+	        	$('.table-div').css('display','block');
+	        	$('#change-btn').text('表格');
+        	}else if(intext=='表格'){
+	        	$('.bar-div').css('display','block');
+	        	$('.table-div').css('display','none');
+	        	$('#change-btn').text('柱状图');
+        	}
+        }
+
+        var selected = [];//选择数组
+        $(document).ready(function () {
+
+            $('#datatable').dataTable();
+
+			//重置全部选择
+            $('#resetBtn').click(function () {
+                resetFilter()
+            })
+
+            function resetFilter() {
+
+                $('#branch').val('全部部门')
+                $('#branch').selectmenu("refresh", true)
+                
+                $('#sort').val('')
+                $('#sort').selectmenu("refresh", true)
+
+                $('input[name="uid"]').val('');
+            }
+            
+            // 选择当前行，排除对于操作列的click监听
+            $('#datatable tbody').on('click', "tr", function () {
+
+                var id = $(this).index();  // id 从server端获取
+
+                var index = $.inArray(id, selected);
+
+                if (index === -1) {
+                    selected.push(id);
+                } else {
+                    selected.splice(index, 1);
+                }
+
+                $(this).toggleClass('selected');
+
+                btnOnSelected(); // 监听是否全选，更改btn status
+
+            });
+
+
+            //下拉菜单初始化
+            $('#branch').selectmenu({
+                change: function (event, data) {
+                    console.info('选择部门:')
+                    console.log(data.item)
+                }
+            });
+            $('#sort').selectmenu({
+                change: function (event, data) {
+                    console.info('排序方式:')
+                    console.log(data.item)
+                }
+            });
+            
+            $('input[name="daterange"]').daterangepicker(dateRangeConfig,
+                function (start, end) {
+                    console.log(start.format('YYYY-MM-DD'))
+                    console.log(end.format('YYYY-MM-DD'))
+                }
+            );
+            // radio添加class
+            $('.i-checks').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue'
+            });
+
+        });
+    </script>
+    
+</body>
+
+</html>

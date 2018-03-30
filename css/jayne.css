@@ -1,0 +1,176 @@
+
+.flex-center{
+	display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+	display: -moz-box; /* Firefox 17- */
+	display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+	display: -moz-flex; /* Firefox 18+ */
+	display: -ms-flexbox; /* IE 10 */
+	display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
+	align-items: center;
+	justify-content: center;
+}
+
+.flex-align-center{
+	margin: 0 auto;
+}
+
+.inline-50{
+	display: inline-block;
+	width: 50px;
+}
+
+.inline-75p{
+	display: inline-block;
+	width: 75px;
+}
+
+.panel-body .left-30p{
+	margin-left: 30px;
+}
+
+.float-left{
+	float: left;
+}
+
+.float-right{
+	float: right;
+}
+
+.col-500{
+	margin: 0 auto;
+	width: 500px;
+}
+.col-900{
+	margin: 0 auto;
+	width: 900px;
+}
+
+.inline{
+	display: inline-block;
+}
+
+.flex-justify-center{
+	display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+	display: -moz-box; /* Firefox 17- */
+	display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+	display: -moz-flex; /* Firefox 18+ */
+	display: -ms-flexbox; /* IE 10 */
+	display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
+	justify-content: center;
+}
+
+.flex-column{
+	display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+	display: -moz-box; /* Firefox 17- */
+	display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+	display: -moz-flex; /* Firefox 18+ */
+	display: -ms-flexbox; /* IE 10 */
+	display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
+	flex-direction: column;
+}
+
+.flex-row{
+	display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */
+	display: -moz-box; /* Firefox 17- */
+	display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+	display: -moz-flex; /* Firefox 18+ */
+	display: -ms-flexbox; /* IE 10 */
+	display: flex; /* Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
+	flex-direction: row;
+}
+
+.space-around{
+	justify-content: space-around;
+}
+
+.top-button{
+	margin: 0px;
+	margin-top: -130px;
+}
+
+.left-button{
+	margin-left: -200px;	
+}
+
+.right-button{
+	margin-left: 300px;	
+	padding: 13px;
+	padding-left: 23px;
+	padding-right: 23px;
+	font-size: 14px;
+	border-radius: 7px;
+}
+
+.width-60{
+	width: 60%;
+}
+
+.width-100{
+	width: 100%;
+}
+
+.form-group .width-80{
+	width: 80%;
+}
+
+.form-group .inline{
+	display: inline-block;
+}
+
+.input-150p{
+	width: 150px;
+	height: 28px;
+	border: 1px solid rgb(197,197,197);
+	border-radius: 2px;
+	padding-left: 10px;
+}
+
+.require-star{
+	color: red;
+}
+
+.black{
+	color: black;
+}
+
+.width-33{
+	width: 33%;
+}
+
+.jquery-Ui-fieldset .width-33{
+	width: 33%;
+}
+
+.no-border{
+	border: 0px;
+}
+
+#recycle-reason{
+	height: 100px;
+	text-align: left;
+}
+
+.set-div{
+	margin-top: 55px;
+}
+
+.height-400{
+	height: 400px;
+}
+
+.panel-body .height-400{
+	height: 400px;
+}
+
+.scroll-div{
+	height: 320px;
+	overflow: scroll;
+}
+
+.red{
+	color: red;
+}
+
+.width-100p{
+	width: 100px;
+}
