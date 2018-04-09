@@ -36,13 +36,6 @@
 	<link href="css/daterangepicker.css" rel="stylesheet">
 
 
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-          <script src="js/html5shiv.min.js"></script>
-          <script src="js/respond.min.js"></script>
-        <![endif]-->
 </head>
 
 <body>
@@ -255,8 +248,8 @@
 		var myChart = echarts.init(dom);
 		var app = {};
 		option = null;
-		var dataAxis = ['王冰', '李毅', '张损', '王冰', '李毅', '张一损', '王冰', '李毅', '张损', '王冰', '李毅', '张损', '王冰', '李毅', '张损', '王冰', '李毅', '张损', '王冰', '李毅'];
-		var data = [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150,160,170,180,190,200];
+		var dataAxis = ['王冰王冰','李利益毅','张损','王冰','李毅','张一损', '王冰', '李毅', '张损', '王冰', '李毅', '张损', '王冰', '李毅', '张损'];
+		var data = [10,20,30,40,50,60,70,80,90,100,110,120,130,140,150];
 		var yMax = 200;
 		var dataShadow = [];
 		
@@ -271,16 +264,16 @@
 		    },
 		    xAxis: {
 		        type : 'category',
-		        splitLine: {show:false},
+		        splitLine: {show:true},
 		        data :  dataAxis,
 		        z: 10
 		    },
 		    yAxis: {
 		        axisLine: {
-		            show: false
+		            show: true
 		        },
 		        axisTick: {
-		            show: false
+		            show: true
 		        },
 		        axisLabel: {
 		            textStyle: {
@@ -296,9 +289,9 @@
 		                normal: {color: 'rgba(0,0,0,0.05)'}
 		            },
 		            barGap:'-100%',
-		            barCategoryGap:'40%',
+		            barCategoryGap:'10%',
 		            data: dataShadow,
-		            animation: false
+		            animation: true
 		        },
 		        {
 		            label: {
@@ -314,7 +307,7 @@
 		                        0, 0, 0, 1,
 		                        [
 		                            {offset: 0, color: '#83bff6'},
-		                            {offset: 0.5, color: '#188df0'},
+		                            {offset: 1, color: '#188df0'},
 		                            {offset: 1, color: '#188df0'}
 		                        ]
 		                    )
@@ -343,7 +336,7 @@
 		        startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
 		        endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
 		    });
-		});;
+		});
 		if (option && typeof option === "object") {
 		    myChart.setOption(option, true);
 		}

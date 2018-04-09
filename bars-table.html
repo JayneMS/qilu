@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+
+    <!-- Common plugins -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/pace.css" rel="stylesheet">
+    <link href="css/jasny-bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/nanoscroller.css">
+    <link rel="stylesheet" href="css/metismenu.min.css">
+    <link href="css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css">
+
+   </head>
+   <body style="height: 100%; margin: 0">
+                        
+        <!--<a href="javascript: void(0);" id="change-btn" class="btn btn-primary inline float-right" style="margin-right: 15px;" onclick="change_tab()">扇形图</a>-->
+   	
+        <div class="panel-body bar-div">
+	       <div id="bars" style="height: 500px; width: 800px;"></div>
+        </div>
+        <!--<div class="panel-body fan-div" style="display: none;">
+	       <div id="fans" style="height: 500px;width: 800px;"></div>
+        </div>-->
+                    
+    	<script src="js/jquery.min.js"></script>
+                    
+		<script type="text/javascript" src="js/echarts.js"></script>
+		<script type="text/javascript" src="js/echarts.common.min.js"></script>
+       <script type="text/javascript">
+			var dom = document.getElementById("bars");
+			var myChart = echarts.init(dom);
+			var app = {};
+			option = null;
+			app.config = {
+			    rotate: 90,
+			    align: 'left',
+			    verticalAlign: 'middle',
+			    position: 'insideBottom',
+			    distance: 15,
+			    onChange: function () {
+			        var labelOption = {
+			            normal: {
+			                rotate: app.config.rotate,
+			                align: app.config.align,
+			                verticalAlign: app.config.verticalAlign,
+			                position: app.config.position,
+			                distance: app.config.distance
+			            }
+			        };
+			        myChart.setOption({
+			            series: [{
+			                label: labelOption
+			            }, {
+			                label: labelOption
+			            }, {
+			                label: labelOption
+			            }, {
+			                label: labelOption
+			            }]
+			        });
+			    }
+			};
+			
+			
+			var labelOption = {
+			    normal: {
+			        show: true,
+			        position: app.config.position,
+			        distance: app.config.distance,
+			        align: app.config.align,
+			        verticalAlign: app.config.verticalAlign,
+			        rotate: app.config.rotate,
+			        formatter: '{c}  {name|{a}}',
+			        fontSize: 16,
+			        rich: {
+			            name: {
+			                textBorderColor: '#fff'
+			            }
+			        }
+			    }
+			};
+			
+			option = {
+			    color: ['#003366', '#006699', '#4cabce', '#e5323e'],
+			    tooltip: {
+			        trigger: 'axis',
+			        axisPointer: {
+			            type: 'shadow'
+			        }
+			    },
+			    xAxis: [
+			        {
+			            type: 'category',
+			            axisTick: {show: false},
+			            data: ['赵世清', '曹春玲', '逄琳', '王孝斌', '林辉']
+			        }
+			    ],
+			    yAxis: [
+			        {
+			            type: 'value'
+			        }
+			    ],
+			    series: [
+			        {
+			            name: '未评价',
+			            type: 'bar',
+			            barGap: 0,
+			            label: labelOption,
+			            data: [320, 332, 301, 334, 390]
+			        },
+			        {
+			            name: '非常满意',
+			            type: 'bar',
+			            label: labelOption,
+			            data: [220, 182, 191, 234, 290]
+			        },
+			        {
+			            name: '一般满意',
+			            type: 'bar',
+			            label: labelOption,
+			            data: [150, 232, 201, 154, 190]
+			        },
+			        {
+			            name: '不满意',
+			            type: 'bar',
+			            label: labelOption,
+			            data: [98, 77, 101, 99, 40]
+			        }
+			    ]
+			};;
+			if (option && typeof option === "object") {
+			    myChart.setOption(option, true);
+			}
+			
+			
+        //切换视图
+        function change_tab() {
+        	var intext = $('#change-btn').text().trim();
+        	
+        	if(intext=='扇形图'){
+	        	$('.bar-div').css('display','none');
+	        	$('.fan-div').css('display','block');
+	        	$('#change-btn').text('柱形图');
+        	}else if(intext=='柱形图'){
+	        	$('.bar-div').css('display','block');
+	        	$('.fan-div').css('display','none');
+	        	$('#change-btn').text('扇形图');
+        	}
+        }
+        
+           		//扇形图的script
+//		var dom = document.getElementById("fans");
+//		var myChart = echarts.init(dom, 'westeros');
+//		var app = {};
+//		option = null;
+//		option = {
+//		    title : {
+//		        text: '坐席话务统计',
+//		        subtext: '呼入',
+//		        x:'center'
+//		    },
+//		    tooltip : {
+//		        trigger: 'item',
+//		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+//		    },
+//		    legend: {
+//		        orient: 'vertical',
+//		        left: 'left',
+//		        data: ['咨询','预约挂号','投诉','表扬','问题及建议','院内事件','院外事件','呼入未分类']
+//		    },
+//		    series : [
+//		        {
+//		            name: '访问来源',
+//		            type: 'pie',
+//		            radius : '55%',
+//		            center: ['50%', '60%'],
+//		            data:[
+//		                {value:335, name:'咨询'},
+//		                {value:310, name:'预约挂号'},
+//		                {value:234, name:'投诉'},
+//		                {value:135, name:'表扬'},
+//		                {value:1548, name:'问题及建议'},
+//		                {value:1548, name:'院内事件'},
+//		                {value:1548, name:'院外事件'},
+//		                {value:1548, name:'呼入未分类'}
+//		            ],
+//		            itemStyle: {
+//		                emphasis: {
+//		                    shadowBlur: 10,
+//		                    shadowOffsetX: 0,
+//		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+//		                }
+//		            }
+//		        }
+//		    ]
+//		};
+//		;
+//		if (option && typeof option === "object") {
+//		    myChart.setOption(option, true);
+//		}
+       </script>
+   </body>
+</html>

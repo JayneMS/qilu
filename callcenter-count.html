@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+   <head>
+       <meta charset="utf-8">
+
+    <!-- Common plugins -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/simple-line-icons.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link href="css/pace.css" rel="stylesheet">
+    <link href="css/jasny-bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/nanoscroller.css">
+    <link rel="stylesheet" href="css/metismenu.min.css">
+    <link href="css/responsive.bootstrap.min.css" rel="stylesheet" type="text/css">
+
+   </head>
+   <body style="height: 100%; margin: 0">
+                        
+        <a href="javascript: void(0);" id="table-btn" class="btn btn-primary inline float-right" style="margin-right: 15px;" onclick="change_tab(this)">表格</a>
+        <a href="javascript: void(0);" id="diagram-btn" class="btn btn-primary inline float-right" style="margin-right: 15px;" onclick="change_tab(this)">图表形式</a>
+        <a href="javascript: void(0);" id="change-btn" class="btn btn-primary inline float-right" style="margin-right: 15px;display: none;" onclick="change_type()">扇形图</a>
+   	
+        <div class="panel-body table-div" style="display: none;">
+	       <div id="tables" style="height: 500px; width: 800px;">表格放这里</div>
+        </div>
+        <div class="panel-body bar-div" style="display: none;">
+	       <div id="bars" style="height: 500px; width: 800px;"></div>
+        </div>
+        <div class="panel-body fan-div" style="display: none;">
+	       <div id="fans" style="height: 500px;width: 800px;"></div>
+        </div>
+                    
+    	<script src="js/jquery.min.js"></script>
+                    
+		<script type="text/javascript" src="js/echarts.js"></script>
+		<script type="text/javascript" src="js/echarts.common.min.js"></script>
+       <script type="text/javascript">
+			var dom = document.getElementById("bars");
+			var myChart = echarts.init(dom);
+			var app = {};
+			option = null;
+			app.config = {
+			    rotate: 90,
+			    align: 'left',
+			    verticalAlign: 'middle',
+			    position: 'insideBottom',
+			    distance: 15,
+			    onChange: function () {
+			        var labelOption = {
+			            normal: {
+			                rotate: app.config.rotate,
+			                align: app.config.align,
+			                verticalAlign: app.config.verticalAlign,
+			                position: app.config.position,
+			                distance: app.config.distance
+			            }
+			        };
+			        myChart.setOption({
+			            series: [{
+			                label: labelOption
+			            }, {
+			                label: labelOption
+			            }, {
+			                label: labelOption
+			            }, {
+			                label: labelOption
+			            }]
+			        });
+			    }
+			};
+			
+			
+			var labelOption = {
+			    normal: {
+			        show: true,
+			        position: app.config.position,
+			        distance: app.config.distance,
+			        align: app.config.align,
+			        verticalAlign: app.config.verticalAlign,
+			        rotate: app.config.rotate,
+			        formatter: '{c}  {name|{a}}',
+			        fontSize: 16,
+			        rich: {
+			            name: {
+			                textBorderColor: '#fff'
+			            }
+			        }
+			    }
+			};
+			
+			option = {
+			    color: ['#003366', '#006699', '#4cabce', '#e5323e'],
+			    tooltip: {
+			        trigger: 'axis',
+			        axisPointer: {
+			            type: 'shadow'
+			        }
+			    },
+			    xAxis: [
+			        {
+			            type: 'category',
+			            axisTick: {show: false},
+			            data: ['2018/4/9', '2018/4/10', '2018/4/10', '2018/4/11', '2018/4/12']
+			        }
+			    ],
+			    yAxis: [
+			        {
+			            type: 'value'
+			        }
+			    ],
+			    series: [
+			        {
+			            name: '呼入',
+			            type: 'bar',
+			            barGap: 0,
+			            label: labelOption,
+			            data: [320, 332, 301, 334, 390]
+			        },
+			        {
+			            name: '呼出',
+			            type: 'bar',
+			            label: labelOption,
+			            data: [220, 182, 191, 234, 290]
+			        }
+			    ]
+			};;
+			if (option && typeof option === "object") {
+			    myChart.setOption(option, true);
+			}
+			
+			
+        //切换图表类型
+        function change_type() {
+        	var intext = $('#change-btn').text().trim();
+        	
+        	if(intext=='扇形图'){
+	        	$('.bar-div').css('display','none');
+	        	$('.fan-div').css('display','block');
+	        	$('#change-btn').text('柱形图');
+        	}else if(intext=='柱形图'){
+	        	$('.bar-div').css('display','block');
+	        	$('.fan-div').css('display','none');
+	        	$('#change-btn').text('扇形图');
+        	}
+        }
+        //切换表格或图表
+        function change_tab(othis){
+        	var intext = $(othis).text().trim();
+        	
+        	if(intext=='表格'){
+	        	$('.bar-div').css('display','none');
+	        	$('.fan-div').css('display','none');
+	        	$('.table-div').css('display','block');
+	        	$('#change-btn').css('display','none');
+	        	
+        	}else if(intext=='图表形式'){
+	        	$('#change-btn').css('display','inline');
+	        	$('.bar-div').css('display','block');
+	        	$('.table-div').css('display','none');
+        	}
+        }
+        
+           		//扇形图的script
+		var dom = document.getElementById("fans");
+		var myChart = echarts.init(dom, 'westeros');
+		var app = {};
+		option = null;
+		option = {
+		    title : {
+		        text: '呼叫中心电话量统计',
+		        x:'center'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    legend: {
+		        orient: 'vertical',
+		        left: 'right',
+		        data: ['呼入','呼出']
+		    },
+		    series : [
+		        {
+		            name: '访问来源',
+		            type: 'pie',
+		            radius : '55%',
+		            center: ['50%', '60%'],
+		            data:[
+		                {value:335, name:'呼入'},
+		                {value:310, name:'呼出'}
+		            ],
+		            itemStyle: {
+		                emphasis: {
+		                    shadowBlur: 10,
+		                    shadowOffsetX: 0,
+		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+		                }
+		            }
+		        }
+		    ]
+		};
+		if (option && typeof option === "object") {
+		    myChart.setOption(option, true);
+		}
+       </script>
+   </body>
+</html>
